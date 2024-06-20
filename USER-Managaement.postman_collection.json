@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "7684e714-2492-4ef6-a71c-69ba3b063876",
+		"name": "USER-Managaement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21378195"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin12\",\r\n    \"email\": \"admin24@admin.com\",\r\n    \"password\": \"Asdfvbnm1@\"\r\n    // \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"timmy12\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register user Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Admin234\",\r\n    \"password\": \"Asdfvbnm1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-2aQ4ZhFbKeEhiBVHoIJUGGnMA78\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jun 2024 15:52:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcxYWQwMDg3MmNlOTc1MDA4Mzk4NzkiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODcyNTkzMSwiZXhwIjoxNzE4NzI5NTMxfQ.vtfuoANceDbThdoQFzX7pXb2ykqw6pxdo4DeGeGkB44\"\n}"
+						}
+					]
+				}
+			],
+			"description": "This section details the process by which users gain authorization to access API resources . It encompasses the essential steps of user registration, login and JWT token issuance.\n\n### User Registration\n\n**Endpoint:** `POST /api/auth/register`\n\n**Request Body:**\n\n- `name` (string): User's chosen username or identifier.\n    \n- `password` (string): User's password for authentication.\n    \n- `email` (string): User's email address for OTP verification and communication.\n    \n- `role` (string): Role of the user. Can be either `admin` or `user`.\n    \n\n**Response:**\n\n- **201 Created:** Upon successful registration, the API returns a 201 status code along with a confirmation message or a success object containing user details.\n    \n\n**Note:** Only Admin can register a user.\n\n**Example:**\n\n```\njsonCopy code{\n  \"name\": \"JohnDoe\",\n  \"password\": \"SecurePassword123\",\n  \"email\": \"john.doe@example.com\",\n  \"role\": \"admin\"\n}\n\n ```\n\n### User Login\n\n**Endpoint:** `POST /api/auth/login`\n\n**Request Body:**\n\n- `email` (string): User's registered email address.\n    \n- `password` (string): User's password for authentication.\n    \n\n**Response:**\n\n- **200 OK:** If the email and password combination is valid, a 200 status code is returned, along with a message indicating the OTP has been sent to the user's email address.\n    \n- **500 Internal Server Error:** For other errors (e.g., network issues, system errors), a 500 status code is returned with a generic error message.\n    \n\n**Example:**\n\n```\n{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"SecurePassword123\"\n}\n\n ```"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/:userId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "6671aea3d9897f94c3e9b4be"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Single Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/:userId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6671aea3d9897f94c3e9b4be"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "258"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"102-caZMvasazoXVVG/s+A8BDf6mGtc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jun 2024 16:00:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6671aea3d9897f94c3e9b4be\",\n    \"username\": \"admin12\",\n    \"email\": \"admin24@admin.com\",\n    \"password\": \"$2b$10$AxadQPVQ3N7zIHOMdgMlhe3rS8iudDzS2VG5EiUIUvAgN8ziZ/MM2\",\n    \"role\": \"admin\",\n    \"createdAt\": \"2024-06-18T15:58:27.244Z\",\n    \"updatedAt\": \"2024-06-18T15:58:27.244Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Single User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/:userId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "6671b3422a9b8b4b3db52f4b"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Single User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/:userId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6671b3422a9b8b4b3db52f4b"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "255"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ff-cN9KZMzKjlk8S19Zn6sUy4t69cc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jun 2024 16:20:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6671b3422a9b8b4b3db52f4b\",\n    \"username\": \"timmy12\",\n    \"email\": \"timmy@admin.com\",\n    \"password\": \"$2b$10$0KBOhz/9rbR6AQ2I1z6xC.08PBYwrhCa4GQ1SZ4zwfYoXZ.9qNgEi\",\n    \"role\": \"user\",\n    \"createdAt\": \"2024-06-18T16:18:10.886Z\",\n    \"updatedAt\": \"2024-06-18T16:20:05.073Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"timmy12\",\r\n    \"email\": \"timmy@admin.com\",\r\n    \"password\": \"admin123\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create user example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"timmy12\",\r\n    \"email\": \"timmy@admin.com\",\r\n    \"password\": \"admin123\",\r\n    \"role\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "256"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"100-JYYn8PxlQ/AicFtJFKSXjPZLV8A\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jun 2024 16:18:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"timmy12\",\n    \"email\": \"timmy@admin.com\",\n    \"password\": \"$2b$10$0KBOhz/9rbR6AQ2I1z6xC.08PBYwrhCa4GQ1SZ4zwfYoXZ.9qNgEi\",\n    \"role\": \"admin\",\n    \"_id\": \"6671b3422a9b8b4b3db52f4b\",\n    \"createdAt\": \"2024-06-18T16:18:10.886Z\",\n    \"updatedAt\": \"2024-06-18T16:18:10.886Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/:userId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "6671b2c826f0407c1b8e4770"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/:userId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "6671b2c826f0407c1b8e4770"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-27o4zzUjhHNmthTJyia4gBCjpos\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jun 2024 16:17:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Users are managed by admins alone. The following endpoints allow admins to create, delete, and edit users.\n\n### Create User\n\n**Endpoint:** `POST /api/users`\n\n**Request Body:**\n\n- `name` (string): User's chosen username or identifier.\n    \n- `password` (string): User's password for authentication.\n    \n- `email` (string): User's email address for OTP verification and communication.\n    \n- `role` (string): Role of the user. Can be either `admin`, or `user`.\n    \n\n**Response:**\n\n- **201 Created:** User created successfully.\n    \n- **403 Forbidden:** If the requester is not an admin.\n    \n\n**Example:**\n\n```\n{\n  \"name\": \"timmy234\",\n  \"password\": \"SecurePassword456\",\n  \"email\": \"jane.doe@example.com\",\n  \"role\": \"user\"\n}\n\n ```\n\n### Delete User\n\n**Endpoint:** `DELETE /api/users/:userId`\n\n**Request Parameters:**\n\n- `userId` (string): ID of the user to be deleted.\n    \n\n**Response:**\n\n- **200 OK:** User deleted successfully.\n    \n- **403 Forbidden:** If the requester is not an admin.\n    \n- **404 Not Found:** If the user does not exist.\n    \n\n### Edit User\n\n**Endpoint:** `PUT /api/users/:userId`\n\n**Request Parameters:**\n\n- `userId` (string): ID of the user to be edited.\n    \n\n**Request Body:**\n\n- `name` (string, optional): User's chosen username or identifier.\n    \n- `password` (string, optional): User's password for authentication.\n    \n- `email` (string, optional): User's email address for OTP verification and communication.\n    \n- `role` (string, optional): Role of the user. Can be either `admin` or `user`.\n    \n\n**Response:**\n\n- **200 OK:** User edited successfully.\n    \n- **403 Forbidden:** If the requester is not an admin.\n    \n- **404 Not Found:** If the user does not exist.\n    \n\n**Example:**\n\n```\n{\n  \"name\": \"timyUpdated\",\n  \"password\": \"NewSecurePassword789\",\n  \"email\": \"jane.doe.updated@example.com\",\n  \"role\": \"admin\"\n}\n\n\n ```"
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Get Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/blogs/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dingle Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/blogs/:blogId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								":blogId"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "6671b4912d67c029e14f25f1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Blog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"A short Story of Virtue\",\r\n    \"content\": \"From a long story we need to to provide the moral of that story and in itself seems like a hard thing to do beccause tell me why you'd be in such a state of trying to relate a story but the words can't for the story not because you're out but because you're the story.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/blogs/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nUsers can create, delete, and get single blogs.\n\n### Create Blog\n\n**Endpoint:** `POST /api/blogs`\n\n**Request Body:**\n\n- `title` (string): Title of the blog.\n    \n- `content` (string): Content of the blog.\n    \n\n**Response:**\n\n- **201 Created:** Blog created successfully.\n    \n\n**Example:**\n\n```\n{\n  \"title\": \"My First Blog\",\n  \"content\": \"This is the content of my first blog.\"\n}\n\n ```\n\n### Delete Blog\n\n**Endpoint:** `DELETE /api/blogs/:blogId`\n\n**Request Parameters:**\n\n- `blogId` (string): ID of the blog to be deleted.\n    \n\n**Response:**\n\n- **200 OK:** Blog deleted successfully.\n    \n- **404 Not Found:** If the blog does not exist.\n    \n\n### Get Single Blog\n\n**Endpoint:** `GET /api/blogs/:blogId`\n\n**Request Parameters:**\n\n- `blogId` (string): ID of the blog to be retrieved.\n    \n\n**Response:**\n\n- **200 OK:** Blog retrieved successfully.\n    \n- **404 Not Found:** If the blog does not exist.\n    \n\n**Example Response:**\n\n```\n{\n  \"id\": \"123456789\",\n  \"title\": \"My First Blog\",\n  \"content\": \"This is the content of my first blog.\",\n  \"author\": {\n  \"_id\":23467686,\n  \"username\": \"timmy2340\n,\n  \"createdAt\": \"2024-06-20T14:48:00.000Z\"\n}\n\n ```"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
